@@ -3,18 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-class DetailPage extends StatefulWidget {
+class DetailScreen extends StatefulWidget {
   static const String routeName = "/detail";
 
   final Map<String, dynamic> item;
 
-  const DetailPage({super.key, required this.item});
+  const DetailScreen({super.key, required this.item});
 
   @override
-  State<DetailPage> createState() => _DetailPageState();
+  State<DetailScreen> createState() => _DetailPageState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailPageState extends State<DetailScreen> {
   final issuesBox = Hive.box('issues');
   final _formKey = GlobalKey<FormState>();
   String _newIssueTitle = "";

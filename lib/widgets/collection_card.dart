@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meus_quadrinhos/providers/filtered_items_provider.dart';
+import 'package:meus_quadrinhos/utils/helpers.dart';
+import 'package:provider/provider.dart';
 
 class CollectionCard extends StatelessWidget {
   const CollectionCard({super.key, required this.currentItem});
@@ -7,6 +10,8 @@ class CollectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final filteredItemsProvider =
+        Provider.of<FilteredItemsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Stack(
@@ -36,11 +41,16 @@ class CollectionCard extends StatelessWidget {
               children: <Widget>[
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  onPressed: () {},
+                  onPressed: () {
+                    showForm(
+                        context, currentItem["key"], filteredItemsProvider);
+                  },
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
-                  onPressed: () {},
+                  onPressed: () {
+                    deleteItem(currentItem["key"], filteredItemsProvider);
+                  },
                 ),
               ],
             ),

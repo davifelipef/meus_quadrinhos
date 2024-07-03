@@ -4,11 +4,12 @@ import 'screens/detail_screen.dart';
 import 'package:meus_quadrinhos/screens/home_screen.dart';
 import 'package:meus_quadrinhos/providers/filtered_items_provider.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:meus_quadrinhos/utils/config.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox('comics_box');
+  await Hive.openBox<Map>('comics_box');
   await Hive.openBox('issues');
   runApp(
     // With a multiprovider I can add more providers as needed
@@ -34,16 +35,16 @@ class MyApp extends StatelessWidget {
         home: const HomePage(),
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.blue,
+            backgroundColor: cblue,
           ),
         ),
         routes: {
           HomePage.routeName: (context) => const HomePage(),
-          DetailPage.routeName: (context) {
+          DetailScreen.routeName: (context) {
             final Map<String, dynamic> args = ModalRoute.of(context)!
                 .settings
                 .arguments as Map<String, dynamic>;
-            return DetailPage(item: args['item']);
+            return DetailScreen(item: args['item']);
           },
         });
   }
