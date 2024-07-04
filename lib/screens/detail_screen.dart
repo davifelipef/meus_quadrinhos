@@ -1,5 +1,4 @@
-// ignore_for_file: avoid_print
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -83,10 +82,18 @@ class _DetailPageState extends State<DetailPage> {
     for (var key in keys) {
       final issueList = issuesBox.get(key);
       if (issueList is List) {
-        print('Issue Key: $key');
+        if (kDebugMode) {
+          if (kDebugMode) {
+            print('Issue Key: $key');
+          }
+        }
         for (var issue in issueList) {
-          print('Issue Title: ${issue['issue title']}');
-          print('Issue Description: ${issue['issue description']}');
+          if (kDebugMode) {
+            print('Issue Title: ${issue['issue title']}');
+          }
+          if (kDebugMode) {
+            print('Issue Description: ${issue['issue description']}');
+          }
         }
       }
     }

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:meus_quadrinhos/screens/detail_screen.dart';
 import 'package:meus_quadrinhos/screens/home_screen.dart';
-//import 'package:meus_quadrinhos/utils/constants.dart';
 import 'package:hive_flutter/adapters.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('comics_box');
   await Hive.openBox('issues');
-  //Constants.prefs = await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
